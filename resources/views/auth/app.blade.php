@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Login | {{env('APP_NAME')}}</title>
- 	<link rel="shortcut icon" href="{{ asset('assets/img/logo.png')}}" type="image/gif" />
-	<link rel="stylesheet" type="text/css" href="{{asset('static/css/main.css')}}">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{env('APP_NAME')}} - Login</title>
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
 </head>
 <body>
+    @yield('content')
 
-	<div class="container">
-        @yield('content')
-		<h2><center><br>{{env('APP_DETAIL')}}</center></h2>
-    </div>
-
-    <script type="text/javascript" src="{{asset('static/js/main.js')}}"></script>
+    <script src="{{asset('shared/js/form-utils.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
 </body>
 </html>
 

@@ -20,7 +20,7 @@ class IsStaff
 
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->level == "Pegawai") {
+        if (auth()->user()->role == "Pegawai") {
             return $next($request);
         }
 

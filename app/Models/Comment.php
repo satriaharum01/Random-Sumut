@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $table = 'comments';
+    protected $primaryKey = 'id';
     protected $fillable = ['article_id', 'user_id', 'content', 'status'];
 
     // Relasi: Komentar milik artikel

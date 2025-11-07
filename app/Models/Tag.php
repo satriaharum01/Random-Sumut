@@ -9,6 +9,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $table = 'tags';
+    protected $primaryKey = 'id';
     protected $fillable = ['name', 'slug'];
 
     // Relasi: Tag bisa punya banyak artikel

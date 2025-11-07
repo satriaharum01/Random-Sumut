@@ -9,6 +9,8 @@ class Media extends Model
 {
     use HasFactory;
 
+    protected $table = 'media';
+    protected $primaryKey = 'id';
     protected $fillable = ['file_path', 'file_type', 'uploaded_by'];
 
     // Relasi: Media diupload oleh User

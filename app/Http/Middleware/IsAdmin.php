@@ -20,10 +20,10 @@ class IsAdmin
 
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->level == "Admin") {
+        if (auth()->user()->role == "Admin") {
             return $next($request);
         }
 
-        return redirect('/dokter/dashboard');
+        return redirect('/staff/dashboard');
     }
 }

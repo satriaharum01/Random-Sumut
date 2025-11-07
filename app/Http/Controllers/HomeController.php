@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Category;
-use App\Models\Tag;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+//Models
+use App\Models\Article;
+use App\Models\ArticleTag;
+use App\Models\Category;
+use App\Models\Comment;
+use App\Models\FeaturedArticle;
+use App\Models\Tag;
+use App\Models\User;
+//Etc.
+use DataTables;
 
 class HomeController extends Controller
 {
@@ -44,6 +49,21 @@ class HomeController extends Controller
     }
 
     public function popular_new($counter)
+    {
+        $query = Article::with('category')
+        ->where('status','published')
+        ->orderBy('views', 'desc')
+        ->take($counter)           // batasi jumlah data
+        ->get();
+        
+        foreach ($query as $key ) {
+            $key->release = date('F d, Y',strtotime($key->updated_at));
+        }
+        
+        return $query;
+    }
+    
+    public function featuredNews($counter)
     {
         $query = Article::with('category')
         ->where('status','published')

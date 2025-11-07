@@ -29,7 +29,7 @@ class CustomAuth extends Controller
             $rows->update([
                 'last_login' => now()
              ]);
-            return redirect()->intended('/'.$level.'/dashboard')
+            return redirect()->intended('/account/dashboard')
                         ->withSuccess('Signed in');
         }
 

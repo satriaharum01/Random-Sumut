@@ -1,0 +1,35 @@
+span.published {
+    text-align: center;
+    min-width: 75%;
+    color: white;
+    background-color: blue;
+    padding: 5px 10px;
+    border-radius: 5px;
+    vertical-align: sub;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+span.archived {
+    text-align: center;
+    min-width: 75%;
+    color: white;
+    background-color: rgb(92, 92, 94);
+    padding: 5px 10px;
+    border-radius: 5px;
+    vertical-align: sub;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+span.draft {
+    text-align: center;
+    min-width: 75%;
+    color: white;
+    background-color: goldenrod;
+    padding: 5px 10px;
+    border-radius: 5px;
+    vertical-align: sub;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
