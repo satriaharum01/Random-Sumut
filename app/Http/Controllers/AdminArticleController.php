@@ -82,7 +82,12 @@ class AdminArticleController extends Controller
 
         $data['views'] = 0;
 
-        Article::create($data);
+        $article = Article::create($data);
+
+        // ✅ SIMPAN TAG KE PIVOT
+        if ($request->filled('tags')) {
+            $article->tags()->sync($request->tags);
+        }
 
         return redirect()->route('account.article')->with('success', 'Artikel berhasil disimpan.');
     }
@@ -105,6 +110,11 @@ class AdminArticleController extends Controller
         }
 
         $post->update($data);
+
+        // update pivot tags
+        if ($request->has('tags')) {
+            $post->tags()->sync($request->tags);
+        }
 
         return redirect()->route('account.article')->with('success', 'Artikel berhasil diperbarui.');
     }
@@ -133,8 +143,15 @@ class AdminArticleController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Article::findOrFail($id);
-            $category->delete();
+            $article = Article::findOrFail($id);
+          
+            $article->tags()->detach();
+
+            if ($article->image && Storage::disk('public')->exists($article->image)) {
+                Storage::disk('public')->delete($article->image);
+            }
+
+            $article->delete();
     
             return redirect()
                 ->route('account.article')
