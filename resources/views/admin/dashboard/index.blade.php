@@ -20,7 +20,7 @@
                       <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">43</div>
-                    <div class="text-muted mb-4">New Tickets</div>
+                    <div class="text-muted mb-4">Article</div>
                   </div>
                 </div>
               </div>
@@ -32,7 +32,7 @@
                       <i class="fe fe-chevron-down"></i>
                     </div>
                     <div class="h1 m-0">17</div>
-                    <div class="text-muted mb-4">Closed Today</div>
+                    <div class="text-muted mb-4">Published</div>
                   </div>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                       <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">7</div>
-                    <div class="text-muted mb-4">New Replies</div>
+                    <div class="text-muted mb-4">Archieved</div>
                   </div>
                 </div>
               </div>
@@ -56,7 +56,7 @@
                       <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">27.3K</div>
-                    <div class="text-muted mb-4">Followers</div>
+                    <div class="text-muted mb-4">Draft</div>
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@
                       <i class="fe fe-chevron-down"></i>
                     </div>
                     <div class="h1 m-0">$95</div>
-                    <div class="text-muted mb-4">Daily Earnings</div>
+                    <div class="text-muted mb-4">Author</div>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@
                       <i class="fe fe-chevron-down"></i>
                     </div>
                     <div class="h1 m-0">621</div>
-                    <div class="text-muted mb-4">Products</div>
+                    <div class="text-muted mb-4">New Article</div>
                   </div>
                 </div>
               </div>

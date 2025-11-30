@@ -92,7 +92,7 @@
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item">
-                    <a href="#" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }}"><i class="fe fe-home"></i> Home</a>
+                    <a href="{{route('account.dashboard')}}" class="nav-link {{ (request()->is('account/dashboard')) ? 'active' : '' }}{{ (request()->is('account/dashboard/*')) ? 'active' : '' }}"><i class="fe fe-home"></i> Home</a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link"><i class="fe fe-users"></i> User</a>

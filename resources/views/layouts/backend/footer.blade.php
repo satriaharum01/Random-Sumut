@@ -81,6 +81,21 @@
     }
 </script>
 <script>
+    function find_data(id) {
+        $.ajax({
+            url: '{{ Request::url() }}/find/' + id,
+            type: "GET",
+            cache: false,
+            dataType: 'json',
+            success: function(dataResult) {
+                set_value(dataResult);
+            }
+        });
+    }
+
+    function cekStat(assignmentStat, targetStat) {
+        return assignmentStat === targetStat ? 'disabled' : '';
+    }
     /**
      * Set HTTP method spoofing untuk Laravel form
      * @param {string} formId - id form (tanpa #)

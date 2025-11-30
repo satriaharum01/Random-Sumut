@@ -34,6 +34,7 @@ Route::prefix('account')->name('account.')->group(function () {
         Route::GET('/{post}/edit', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('edit');
         Route::PUT('/update/{post}', [App\Http\Controllers\AdminArticleController::class, 'update'])->name('update');
         Route::POST('/store', [App\Http\Controllers\AdminArticleController::class, 'store'])->name('store');
+        Route::GET('/change/{id}/status/{status}',[App\Http\Controllers\AdminArticleController::class, 'changeStat'])->name('changeStat');
         Route::GET('/json', [App\Http\Controllers\AdminArticleController::class, 'json']);
     });
 

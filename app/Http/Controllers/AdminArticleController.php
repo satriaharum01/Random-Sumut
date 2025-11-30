@@ -77,7 +77,7 @@ class AdminArticleController extends Controller
 
         // Upload image
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('posts', 'public');
+            $data['image'] = $request->file('image')->store('image', 'public');
         }
 
         $data['views'] = 0;
@@ -108,7 +108,28 @@ class AdminArticleController extends Controller
 
         return redirect()->route('account.article')->with('success', 'Artikel berhasil diperbarui.');
     }
-    
+
+    public function changeStat(Request $request, $id, $status)
+    {
+        $allowedStatus = ['draft', 'published', 'archived'];
+
+        if (!in_array($status, $allowedStatus)) {
+            return back()->withErrors('Status tidak valid');
+        }
+
+        $article = Article::findOrFail($id);
+
+        if ($article->status === $status) {
+            return back()->with('info', 'Status sudah sama');
+        }
+
+        $article->update([
+            'status' => $status
+        ]);
+
+        return back()->with('success', 'Status artikel berhasil diubah');
+    }
+
     public function destroy($id)
     {
         try {
