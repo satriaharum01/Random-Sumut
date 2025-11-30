@@ -114,10 +114,13 @@
                     </div>
                   </li>
                   <li class="nav-item dropdown">
-                    <a href="#" class="nav-link {{ (request()->is('account/category')) ? 'active' : '' }}{{ (request()->is('account/category/*')) ? 'active' : '' }}" data-toggle="dropdown"><i class="fa fa-cog"></i> Settings</a>
+                    <a href="#" class="nav-link 
+                      {{ (request()->is('account/category')) ? 'active' : '' }}{{ (request()->is('account/category/*')) ? 'active' : '' }}
+                      {{ (request()->is('account/tag')) ? 'active' : '' }}{{ (request()->is('account/tag/*')) ? 'active' : '' }}
+                      " data-toggle="dropdown"><i class="fa fa-cog"></i> Settings</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="#" class="dropdown-item ">Category</a>
-                      <a href="#" class="dropdown-item ">Tags</a>
+                      <a href="{{route('account.category')}}" class="dropdown-item ">Category</a>
+                      <a href="{{route('account.tag')}}" class="dropdown-item ">Tags</a>
                       <a href="#" class="dropdown-item ">Website</a>
                     </div>
                   </li>

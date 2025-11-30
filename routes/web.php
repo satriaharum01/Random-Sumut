@@ -27,6 +27,7 @@ Route::prefix('account')->name('account.')->group(function () {
     Route::GET('/dashboard', [App\Http\Controllers\AdminDashboardController::class, 'index'])->name('dashboard');
     Route::GET('/article', [App\Http\Controllers\AdminArticleController::class, 'index'])->name('article');
     Route::GET('/category', [App\Http\Controllers\AdminCategoryController::class, 'index'])->name('category');
+    Route::GET('/tag', [App\Http\Controllers\AdminTagsController::class, 'index'])->name('tag');
 
     Route::prefix('article')->name('article.')->group(function () {
         Route::GET('/new', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('new');
@@ -46,5 +47,17 @@ Route::prefix('account')->name('account.')->group(function () {
         //In Article Page
         Route::GET('/store/quick', [App\Http\Controllers\AdminCategoryController::class, 'storeJson'])->name('storeJson');
         Route::GET('/json', [App\Http\Controllers\AdminCategoryController::class, 'json']);
+    });
+
+    Route::prefix('tag')->name('tag.')->group(function () {
+
+        Route::PUT('/update/{post}', [App\Http\Controllers\AdminTagsController::class, 'update'])->name('update');
+        Route::POST('/store', [App\Http\Controllers\AdminTagsController::class, 'store'])->name('store');
+        Route::DELETE('/delete/{id}', [App\Http\Controllers\AdminTagsController::class, 'destroy'])->name('destroy');
+        Route::GET('/find/{id}', [App\Http\Controllers\AdminTagsController::class, 'find']);
+
+        //In Article Page
+        Route::GET('/store/quick', [App\Http\Controllers\AdminTagsController::class, 'storeJson'])->name('storeJson');
+        Route::GET('/json', [App\Http\Controllers\AdminTagsController::class, 'json']);
     });
 });

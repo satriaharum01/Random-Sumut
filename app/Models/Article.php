@@ -65,11 +65,16 @@ class Article extends Model
             'slug' => 'uncategorized'
         ]);
     }
-
+    
     // Relasi: Artikel bisa punya banyak tag
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'article_tags');
+        return $this->belongsToMany(
+            Tag::class,
+            'article_tags',  
+            'article_id',
+            'tag_id'
+        );
     }
 
     // Relasi: Artikel bisa punya banyak komentar

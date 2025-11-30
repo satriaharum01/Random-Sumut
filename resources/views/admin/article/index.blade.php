@@ -115,5 +115,9 @@
   $("body").on("click", ".btn-category", function() {
     window.location.href = "{{route('account.category')}}";
   })
+  
+  $("body").on("click", ".btn-tags", function() {
+    window.location.href = "{{route('account.tag')}}";
+  })
 </script>
 @endsection

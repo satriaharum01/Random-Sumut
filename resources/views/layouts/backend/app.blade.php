@@ -17,7 +17,7 @@
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
     <!-- Generated: 2018-04-06 16:27:42 +0200 -->
-    <title>Homepage - tabler.github.io - a responsive, flat and full featured admin template</title>
+    <title>{{env('APP_NAME')}} - {{$title}}</title>
     @include('layouts.backend.css')
 </head>
 
