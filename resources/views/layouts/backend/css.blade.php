@@ -20,3 +20,7 @@
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/ransum.css')}}" rel="stylesheet" />
     <link  rel="stylesheet"  href="{{asset('assets/css/datatables.min.css')}}"/>
+    <!-- Plugins -->
+    <!-- SweetAlert 2 -->
+    <script src="{{ asset('lib/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <link rel="{{ asset('lib/sweetalert2/sweetalert2.min.css') }}">

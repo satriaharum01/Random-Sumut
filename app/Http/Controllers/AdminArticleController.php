@@ -14,6 +14,7 @@ use App\Models\Tag;
 use App\Models\User;
 // Etc.
 use DataTables;
+use Exception;
 
 class AdminArticleController extends Controller
 {
@@ -106,6 +107,22 @@ class AdminArticleController extends Controller
         $post->update($data);
 
         return redirect()->route('account.article')->with('success', 'Artikel berhasil diperbarui.');
+    }
+    
+    public function destroy($id)
+    {
+        try {
+            $category = Article::findOrFail($id);
+            $category->delete();
+    
+            return redirect()
+                ->route('account.article')
+                ->with('success', 'Article berhasil dihapus.');
+        } catch (Exception $e) {
+            return back()
+                ->with('error', 'Article gagal dihapus.')
+                ->withInput();
+        }
     }
     //COUNTERS
 

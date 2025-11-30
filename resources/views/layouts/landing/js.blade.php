@@ -6,3 +6,4 @@
 <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
 <!-- Template Javascript -->
 <script src="{{asset('js/main.js')}}"></script>
+

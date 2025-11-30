@@ -44,8 +44,8 @@
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                     <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
                     <span class="ml-2 d-none d-lg-block">
-                      <span class="text-default">Jane Pearson</span>
-                      <small class="text-muted d-block mt-1">Administrator</small>
+                      <span class="text-default">{{Auth::user()->name}}</span>
+                      <small class="text-muted d-block mt-1">{{Auth::user()->role}}</small>
                     </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -111,6 +111,14 @@
                     <div class="dropdown-menu dropdown-menu-arrow">
                       <a href="#" class="dropdown-item ">Berita</a>
                       <a href="#" class="dropdown-item ">Blog</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a href="#" class="nav-link {{ (request()->is('account/category')) ? 'active' : '' }}{{ (request()->is('account/category/*')) ? 'active' : '' }}" data-toggle="dropdown"><i class="fa fa-cog"></i> Settings</a>
+                    <div class="dropdown-menu dropdown-menu-arrow">
+                      <a href="#" class="dropdown-item ">Category</a>
+                      <a href="#" class="dropdown-item ">Tags</a>
+                      <a href="#" class="dropdown-item ">Website</a>
                     </div>
                   </li>
                 </ul>

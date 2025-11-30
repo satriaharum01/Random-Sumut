@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use App\Models\Category;
 // Etc.
 use DataTables;
+use Exception;
 
 class AdminCategoryController extends Controller
 {
@@ -32,29 +33,29 @@ class AdminCategoryController extends Controller
     public function index()
     {
         $this->data['title'] = 'Categoreis Management';
-        $this->data['sub_title'] = 'List Category '.env('APP_NAME');
+        $this->data['sub_title'] = 'List Category ' . env('APP_NAME');
 
         return view('admin/category/index', $this->data);
     }
 
-    public function new()
-    {
-        $this->data['title'] = 'Artilce Management';
-        $this->data['sub_title'] = 'Add New Artilce ';
-        $this->data['categories'] = Category::all();
-
-        return view('admin/article/detail', $this->data);
-    }
-
+    // Query
     public function json()
     {
-        $data = Category::orderBy('updated_at', 'DESC')->all();
+        $data = Category::withCount('articles')->orderBy('updated_at', 'DESC')->get();
 
 
         return Datatables::of($data)
             ->addIndexColumn()
             ->make(true);
     }
+
+    public function find($id)
+    {
+        $data = Category::findorfail($id);
+
+        return json_encode($data);
+    }
+
 
     //CRUD
     public function storeJson(Request $request)
@@ -68,46 +69,48 @@ class AdminCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Article::validate($request->all());
+        $validator = Category::validate($request->all());
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
         $data = $request->all();
 
-        // Upload image
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('posts', 'public');
-        }
+        Category::create($data);
 
-        $data['views'] = 0;
-
-        Article::create($data);
-
-        return redirect()->route('account.article')->with('success', 'Artikel berhasil disimpan.');
+        return redirect()->route('account.category')->with('info', 'Category berhasil disimpan.');
     }
 
-    public function update(Request $request, Article $post)
+    public function update(Request $request, Category $post)
     {
-        $validator = Article::validate($request->all(), $post->id);
+        $validator = Category::validate($request->all(), $post->id);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
         $data = $request->all();
-
-        // Update image jika ada
-        if ($request->hasFile('image')) {
-            if ($post->image && Storage::disk('public')->exists($post->image)) {
-                Storage::disk('public')->delete($post->image);
-            }
-            $data['image'] = $request->file('image')->store('posts', 'public');
-        }
 
         $post->update($data);
 
-        return redirect()->route('account.article')->with('success', 'Artikel berhasil diperbarui.');
+        return redirect()->route('account.category')->with('success', 'Category berhasil diperbarui.');
     }
+
+    public function destroy($id)
+    {
+        try {
+            $category = Category::findOrFail($id);
+            $category->delete();
+
+            return redirect()
+                ->route('account.category')
+                ->with('delete', 'Category berhasil dihapus.');
+        } catch (Exception $e) {
+            return back()
+                ->with('warning', 'Category gagal dihapus.')
+                ->withInput();
+        }
+    }
+
     //COUNTERS
 
     //GRAPH

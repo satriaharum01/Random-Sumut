@@ -10,10 +10,17 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $table = 'article';
+    protected $table = 'articles';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'title', 'slug', 'content', 'image', 'author_id', 'category_id', 'status', 'views'
+        'title',
+        'slug',
+        'content',
+        'image',
+        'author_id',
+        'category_id',
+        'status',
+        'views'
     ];
 
     // Validator
@@ -21,7 +28,7 @@ class Article extends Model
     {
         $rules = [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:posts,slug,' . $id,
+            'slug' => 'required|string|max:255|unique:articles,slug,' . $id,
             'content' => 'required|string',
             'image' => $id ? 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048' : 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'author_id' => 'required|exists:users,id',

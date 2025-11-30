@@ -182,7 +182,7 @@
 <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form id="addCategoryForm" method="POST" action="{{ route('categories.storeJson') }}">
+        <form id="addCategoryForm" method="POST" action="{{ route('account.category.storeJson') }}">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -224,35 +224,39 @@
     }
 </script>
 <script>
-// Preview upload gambar
-document.getElementById('image').addEventListener('change', function(event) {
-    const [file] = event.target.files;
-    if (file) {
-        const preview = document.getElementById('preview-image');
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = 'block';
-    }
-});
+    // Preview upload gambar
+    document.getElementById('image').addEventListener('change', function(event) {
+        const [file] = event.target.files;
+        if (file) {
+            const preview = document.getElementById('preview-image');
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = 'block';
+        }
+    });
 </script>
 <script>
-    $('#addCategoryForm').on('submit', function (e) {
+    $('#addCategoryForm').on('submit', function(e) {
         e.preventDefault();
         const form = $(this);
 
         $.post(form.attr('action'), form.serialize())
-            .done(function (res) {
+            .done(function(res) {
                 $('#addCategoryModal').modal('hide');
                 $('#category_id').append(
-                    $('<option>', { value: res.id, text: res.name, selected: true })
+                    $('<option>', {
+                        value: res.id,
+                        text: res.name,
+                        selected: true
+                    })
                 );
             })
-            .fail(function () {
+            .fail(function() {
                 alert('Gagal menambah kategori');
             });
     });
 </script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#tags').select2({
             placeholder: 'Pilih tags...',
             allowClear: true,

@@ -24,15 +24,27 @@ Route::POST('/account/login/cek_login', [App\Http\Controllers\CustomAuth::class,
 //GET ADMIN
 
 Route::prefix('account')->name('account.')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/article', [App\Http\Controllers\AdminArticleController::class, 'index'])->name('article');
-    Route::get('/article/new', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('article.new');
-    Route::get('/article/{post}/edit', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('article.edit');
-    Route::get('/article/update/{post}', [App\Http\Controllers\AdminArticleController::class, 'update'])->name('article.update');
-    Route::get('/article/store', [App\Http\Controllers\AdminArticleController::class, 'store'])->name('article.store');
-    Route::get('/article/json', [App\Http\Controllers\AdminArticleController::class, 'json']);
-});
-Route::prefix('categories')->name('categories.')->group(function () {
-    Route::get('/store/quick', [App\Http\Controllers\AdminArticleController::class, 'storeJson'])->name('storeJson');
-    Route::get('/json', [App\Http\Controllers\AdminArticleController::class, 'json']);
+    Route::GET('/dashboard', [App\Http\Controllers\AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::GET('/article', [App\Http\Controllers\AdminArticleController::class, 'index'])->name('article');
+    Route::GET('/category', [App\Http\Controllers\AdminCategoryController::class, 'index'])->name('category');
+
+    Route::prefix('article')->name('article.')->group(function () {
+        Route::GET('/new', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('new');
+        Route::GET('/{post}/edit', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('edit');
+        Route::PUT('/update/{post}', [App\Http\Controllers\AdminArticleController::class, 'update'])->name('update');
+        Route::POST('/store', [App\Http\Controllers\AdminArticleController::class, 'store'])->name('store');
+        Route::GET('/json', [App\Http\Controllers\AdminArticleController::class, 'json']);
+    });
+
+    Route::prefix('category')->name('category.')->group(function () {
+
+        Route::PUT('/update/{post}', [App\Http\Controllers\AdminCategoryController::class, 'update'])->name('update');
+        Route::POST('/store', [App\Http\Controllers\AdminCategoryController::class, 'store'])->name('store');
+        Route::DELETE('/delete/{id}', [App\Http\Controllers\AdminCategoryController::class, 'destroy'])->name('destroy');
+        Route::GET('/find/{id}', [App\Http\Controllers\AdminCategoryController::class, 'find']);
+
+        //In Article Page
+        Route::GET('/store/quick', [App\Http\Controllers\AdminCategoryController::class, 'storeJson'])->name('storeJson');
+        Route::GET('/json', [App\Http\Controllers\AdminCategoryController::class, 'json']);
+    });
 });
