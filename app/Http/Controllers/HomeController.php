@@ -37,8 +37,10 @@ class HomeController extends Controller
     {
         $this->data['category'] = Category::all();
         $this->data['tags'] = Tag::all();
-        $this->data['popular_news'] = $this->popular_new(3);
+        $this->data['popular_news'] = $this->popularNews(3);
+        $this->data['latest_news'] = $this->latestNews(4);
         
+        //return($this->data['latest_news'] );
         return view('landing/index', $this->data);
     }
 
@@ -48,7 +50,7 @@ class HomeController extends Controller
         return view('auth/login', $this->data);
     }
 
-    public function popular_new($counter)
+    public function popularNews($counter)
     {
         $query = Article::with('category')
         ->where('status','published')
@@ -76,5 +78,48 @@ class HomeController extends Controller
         }
         
         return $query;
+    }
+    
+    public function latestNews($counter)
+    {
+        $query = Article::with(['category','author'])->withCount('comments')
+        ->where('status','published')
+        ->orderBy('updated_at', 'desc')
+        ->take($counter)           // batasi jumlah data
+        ->get();
+        foreach ($query as $key ) {
+            $content = strip_tags($key->content);
+            $key->subtitle = collect(explode("\n", wordwrap($content, 80)))
+                          ->take(2)
+                          ->implode(' ');
+            $key->release = date('F d, Y',strtotime($key->updated_at));
+        }
+        
+        return $query;
+    }
+
+    
+    /*
+     * Berita Function
+    */
+    public function bacaBerita($slug)
+    {
+        $tags;
+        $query = Article::with(['category','author','tags'])->withCount('comments')
+        ->where('slug',$slug)
+        ->get();
+        
+        foreach ($query as $key ) {
+            $key->release = date('F d, Y',strtotime($key->updated_at));
+            $tags = $key->tags;
+        }
+        
+        $this->data['news'] = $query;
+
+        $this->data['popular_news'] = $this->popularNews(3);
+        $this->data['category'] = Category::all();
+        $this->data['tags'] = $tags;
+        
+        return view('landing/singlePage', $this->data);
     }
 }

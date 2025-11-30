@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('landing');
 
+Route::prefix('berita')->name('berita.')->group(function () {
+    Route::GET('/{slug}', [App\Http\Controllers\HomeController::class, 'bacaBerita'])->name('baca');
+});
+
 //Login
 Route::GET('/account/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 Route::POST('/account/logout', [App\Http\Controllers\CustomAuth::class, 'customlogout'])->name('logout');

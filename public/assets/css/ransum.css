@@ -44,7 +44,7 @@ span.draft {
     border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,0,.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
     opacity: 0;
 }
 
@@ -81,4 +81,20 @@ span.draft {
 
 .toast-body {
     padding: .75rem
+}
+
+.truncate-2 {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* jumlah baris */
+    overflow: hidden;
+}
+
+.truncate-2 {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    /* jumlah baris */
+    overflow: hidden;
 }

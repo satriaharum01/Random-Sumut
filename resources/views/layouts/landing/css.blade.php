@@ -10,3 +10,4 @@
 <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 <!-- Customized Bootstrap Stylesheet -->
 <link href="{{asset('css/style.css')}}" rel="stylesheet">
+<link href="{{asset('assets/css/ransum.css')}}" rel="stylesheet" />

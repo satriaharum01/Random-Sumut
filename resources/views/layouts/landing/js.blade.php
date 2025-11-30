@@ -7,3 +7,20 @@
 <!-- Template Javascript -->
 <script src="{{asset('js/main.js')}}"></script>
 
+<script>
+    var renderAsHtml = function(data, type, full) {
+        return decHTMLifEnc(data);
+    };
+    var isEncHTML = function(str) {
+        if (str.search(/&amp;/g) != -1 || str.search(/&lt;/g) != -1 || str.search(/&gt;/g) != -1)
+            return true;
+        else
+            return false;
+    };
+
+    var decHTMLifEnc = function(str) {
+        if (isEncHTML(str))
+            return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+        return str;
+    }
+</script>
