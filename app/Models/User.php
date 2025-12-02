@@ -16,6 +16,26 @@ class User extends Authenticatable
     use Notifiable;
     protected $table = 'users';
     protected $primaryKey = 'id';
+
+    // Validator
+    public static function validate($data, $id = null)
+    {
+        $rules = [
+            'name' => 'required|string|max:255|min:3',
+            'email' => 'required|string|max:255|unique:users,email,' . $id,
+        ];
+
+        $messages = [
+            'name.required' => 'Username wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
+            'email.unique' => 'Email sudah digunakan.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password Minimal 6 Character.',
+        ];
+
+        return Validator::make($data, $rules, $messages);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +45,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'level'
+        'role'
     ];
 
     /**

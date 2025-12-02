@@ -58,9 +58,9 @@ return [
             'root'   => public_path() . '/images/product_images',
         ],
 
-        'master_upload' => [
+        'avatar_upload' => [
             'driver' => 'local',
-            'root'   => public_path() . '/assets/upload',
+            'root'   => public_path() . '/avatar',
         ],
 
         'pdf_upload' => [

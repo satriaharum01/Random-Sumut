@@ -69,21 +69,21 @@ class AdminCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Category::validate($request->all());
+        $validator = User::validate($request->all());
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
         $data = $request->all();
 
-        Category::create($data);
+        User::create($data);
 
-        return redirect()->route('account.category')->with('info', 'Category berhasil disimpan.');
+        return redirect()->route('account.user')->with('info', 'User berhasil disimpan.');
     }
 
     public function update(Request $request, Category $post)
     {
-        $validator = Category::validate($request->all(), $post->id);
+        $validator = User::validate($request->all(), $post->id);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
@@ -92,7 +92,7 @@ class AdminCategoryController extends Controller
 
         $post->update($data);
 
-        return redirect()->route('account.category')->with('success', 'Category berhasil diperbarui.');
+        return redirect()->route('account.category')->with('success', 'User berhasil diperbarui.');
     }
 
     public function destroy($id)

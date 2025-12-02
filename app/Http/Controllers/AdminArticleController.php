@@ -77,7 +77,7 @@ class AdminArticleController extends Controller
 
         // Upload image
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('image', 'public');
+            $data['image'] = $request->file('image')->store('article', 'public');
         }
 
         $data['views'] = 0;
@@ -106,7 +106,7 @@ class AdminArticleController extends Controller
             if ($post->image && Storage::disk('public')->exists($post->image)) {
                 Storage::disk('public')->delete($post->image);
             }
-            $data['image'] = $request->file('image')->store('posts', 'public');
+            $data['image'] = $request->file('image')->store('article', 'public');
         }
 
         $post->update($data);

@@ -32,10 +32,11 @@ Route::prefix('account')->name('account.')->group(function () {
     Route::GET('/article', [App\Http\Controllers\AdminArticleController::class, 'index'])->name('article');
     Route::GET('/category', [App\Http\Controllers\AdminCategoryController::class, 'index'])->name('category');
     Route::GET('/tag', [App\Http\Controllers\AdminTagsController::class, 'index'])->name('tag');
+    Route::GET('/user', [App\Http\Controllers\AdminUsersController::class, 'index'])->name('user');
 
     Route::prefix('article')->name('article.')->group(function () {
         Route::GET('/new', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('new');
-        Route::GET('/{post}/edit', [App\Http\Controllers\AdminArticleController::class, 'new'])->name('edit');
+        Route::GET('/{post}/edit', [App\Http\Controllers\AdminArticleController::class, 'edit'])->name('edit');
         Route::PUT('/update/{post}', [App\Http\Controllers\AdminArticleController::class, 'update'])->name('update');
         Route::POST('/store', [App\Http\Controllers\AdminArticleController::class, 'store'])->name('store');
         Route::GET('/change/{id}/status/{status}',[App\Http\Controllers\AdminArticleController::class, 'changeStat'])->name('changeStat');
@@ -64,5 +65,17 @@ Route::prefix('account')->name('account.')->group(function () {
         //In Article Page
         Route::GET('/store/quick', [App\Http\Controllers\AdminTagsController::class, 'storeJson'])->name('storeJson');
         Route::GET('/json', [App\Http\Controllers\AdminTagsController::class, 'json']);
+    });
+
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::GET('/new', [App\Http\Controllers\AdminUsersController::class, 'form'])->name('new');
+        Route::GET('/{user}/edit', [App\Http\Controllers\AdminUsersController::class, 'form'])->name('edit');
+        Route::PUT('/update/{user}', [App\Http\Controllers\AdminUsersController::class, 'update'])->name('update');
+        Route::POST('/store', [App\Http\Controllers\AdminUsersController::class, 'store'])->name('store');
+        Route::DELETE('/delete/{id}', [App\Http\Controllers\AdminUsersController::class, 'destroy'])->name('destroy');
+        Route::GET('/find/{id}', [App\Http\Controllers\AdminUsersController::class, 'find']);
+
+        //In Article Page
+        Route::GET('/json', [App\Http\Controllers\AdminUsersController::class, 'json']);
     });
 });

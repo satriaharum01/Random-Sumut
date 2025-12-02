@@ -33,6 +33,53 @@ span.draft {
     font-weight: bolder;
     text-transform: uppercase;
 }
+span.Admin {
+    text-align: center;
+    min-width: 75%;
+    color: white;
+    background-color: blue;
+    padding: 5px 10px;
+    border-radius: 5px;
+    vertical-align: sub;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+span.Pembaca {
+    text-align: center;
+    min-width: 75%;
+    color: white;
+    background-color: rgb(92, 92, 94);
+    padding: 5px 10px;
+    border-radius: 5px;
+    vertical-align: sub;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+span.Editor {
+    text-align: center;
+    min-width: 75%;
+    color: white;
+    background-color: goldenrod;
+    padding: 5px 10px;
+    border-radius: 5px;
+    vertical-align: sub;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+span.Jurnalis {
+    text-align: center;
+    min-width: 75%;
+    color: white;
+    background-color: maroon;
+    padding: 5px 10px;
+    border-radius: 5px;
+    vertical-align: sub;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
 
 .toast {
     -ms-flex-preferred-size: 350px;

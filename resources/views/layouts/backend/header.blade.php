@@ -95,7 +95,7 @@
                     <a href="{{route('account.dashboard')}}" class="nav-link {{ (request()->is('account/dashboard')) ? 'active' : '' }}{{ (request()->is('account/dashboard/*')) ? 'active' : '' }}"><i class="fe fe-home"></i> Home</a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fe fe-users"></i> User</a>
+                    <a href="{{route('account.user')}}" class="nav-link {{ (request()->is('account/user')) ? 'active' : '' }} {{ (request()->is('account/user/*')) ? 'active' : '' }}"><i class="fe fe-users"></i> User</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a href="{{route('account.article')}}" class="nav-link {{ (request()->is('account/article')) ? 'active' : '' }} {{ (request()->is('account/article/*')) ? 'active' : '' }}"><i class="fa-regular fa-newspaper"></i> Article</a>
@@ -105,13 +105,6 @@
                   </li>
                   <li class="nav-item dropdown">
                     <a href="#" class="nav-link"><i class="fa fa-commenting"></i> Komentar</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a href="#" class="nav-link" data-toggle="dropdown"><i class="fa fa-bullhorn"></i> Berita & Blog</a>
-                    <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="#" class="dropdown-item ">Berita</a>
-                      <a href="#" class="dropdown-item ">Blog</a>
-                    </div>
                   </li>
                   <li class="nav-item dropdown">
                     <a href="#" class="nav-link 
