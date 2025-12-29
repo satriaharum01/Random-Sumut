@@ -121,7 +121,7 @@
                     <div class="dropdown-menu dropdown-menu-arrow">
                       <a href="{{route('account.category')}}" class="dropdown-item ">Category</a>
                       <a href="{{route('account.tag')}}" class="dropdown-item ">Tags</a>
-                      <a href="#" class="dropdown-item ">Website</a>
+                      <a href="{{route('account.website')}}" class="dropdown-item ">Website</a>
                     </div>
                   </li>
                 </ul>
